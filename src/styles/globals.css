@@ -3,13 +3,176 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --color-brand-primary: #10b981;
+  --color-brand-secondary: #34d399;
+  --color-brand-tertiary: #a3e635;
+  --color-brand-gradient: linear-gradient(
+    90deg,
+    var(--color-brand-primary) 0%,
+    var(--color-brand-tertiary) 100%
+  );
+  --color-purple: #a855f7;
+  --color-blue: #3b82f6;
+  --color-cyan: #06b6d4;
+  --color-pink: #ec4899;
+  --color-rose: #f43f5e;
+  --color-orange: #f97316;
+  --color-yellow: #eab308;
+
+  --color-background-primary: #0f172a;
+  --color-background-secondary: #1e293b;
+  --color-background-tertiary: #334155;
+  --color-background-inverse: #ffffff;
+
+  --color-interaction-inactive: #94a3b8;
+  --color-interaction-hover: #059669;
+  --color-interaction-pressed: #047857;
+  --color-interaction-focus: #10b981;
+
+  --color-border: #f8fafc80;
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #e2e8f0;
+  --color-text-default: #64748b;
+  --color-text-inverse: #ffffff;
+  --color-text-disabled: #94a3b8;
+
+  --color-danger: #dc2626;
+
+  --color-icon-primary: #64748b;
+  --color-icon-inverse: #f8fafc;
+  --color-icon-brand: #10b981;
+
+  /* -------------- typo -------------- */
+
+  --font-pre: pretendard;
+
+  /* 4xl */
+  --font-4xl-m: 40px;
+  --font-4xl-m-line-height: 48px;
+  --font-4xl-m-font-weight: 500;
+
+  /* 3xl */
+  --font-3xl-b: 32px;
+  --font-3xl-b-line-height: 38px;
+  --font-3xl-b-font-weight: 700;
+
+  --font-3xl-sb: 32px;
+  --font-3xl-sb-line-height: 38px;
+  --font-3xl-sb-font-weight: 600;
+
+  /* 2xl */
+  --font-2xl-b: 24px;
+  --font-2xl-b-line-height: 28px;
+  --font-2xl-b-font-weight: 700;
+
+  --font-2xl-sb: 24px;
+  --font-2xl-sb-line-height: 28px;
+  --font-2xl-sb-font-weight: 600;
+
+  --font-2xl-m: 24px;
+  --font-2xl-m-line-height: 28px;
+  --font-2xl-m-font-weight: 500;
+
+  --font-2xl-r: 24px;
+  --font-2xl-r-line-height: 28px;
+  --font-2xl-r-font-weight: 400;
+
+  /* xl */
+  --font-xl-b: 20px;
+  --font-xl-b-line-height: 24px;
+  --font-xl-b-font-weight: 700;
+
+  --font-xl-sb: 20px;
+  --font-xl-sb-line-height: 24px;
+  --font-xl-sb-font-weight: 600;
+
+  --font-xl-m: 20px;
+  --font-xl-m-line-height: 24px;
+  --font-xl-m-font-weight: 500;
+
+  --font-xl-r: 20px;
+  --font-xl-r-line-height: 24px;
+  --font-xl-r-font-weight: 400;
+
+  /* 2lg */
+  --font-2lg-b: 18px;
+  --font-2lg-b-line-height: 21px;
+  --font-2lg-b-font-weight: 700;
+
+  --font-2lg-sb: 18px;
+  --font-2lg-sb-line-height: 21px;
+  --font-2lg-sb-font-weight: 600;
+
+  --font-2lg-m: 18px;
+  --font-2lg-m-line-height: 21px;
+  --font-2lg-m-font-weight: 500;
+
+  --font-2lg-r: 18px;
+  --font-2lg-r-line-height: 21px;
+  --font-2lg-r-font-weight: 400;
+
+  /* lg */
+  --font-lg-b: 16px;
+  --font-lg-b-line-height: 19px;
+  --font-lg-b-font-weight: 700;
+
+  --font-lg-sb: 16px;
+  --font-lg-sb-line-height: 19px;
+  --font-lg-sb-font-weight: 600;
+
+  --font-lg-m: 16px;
+  --font-lg-m-line-height: 19px;
+  --font-lg-m-font-weight: 500;
+
+  --font-lg-r: 16px;
+  --font-lg-r-line-height: 19px;
+  --font-lg-r-font-weight: 400;
+
+  /* md */
+  --font-md-b: 14px;
+  --font-md-b-line-height: 17px;
+  --font-md-b-font-weight: 700;
+
+  --font-md-sb: 14px;
+  --font-md-sb-line-height: 17px;
+  --font-md-sb-font-weight: 600;
+
+  --font-md-m: 14px;
+  --font-md-m-line-height: 17px;
+  --font-md-m-font-weight: 500;
+
+  --font-md-r: 14px;
+  --font-md-r-line-height: 17px;
+  --font-md-r-font-weight: 400;
+
+  /* sm */
+  --font-sm-sb: 13px;
+  --font-sm-sb-line-height: 16px;
+  --font-sm-sb-font-weight: 600;
+
+  --font-sm-m: 13px;
+  --font-sm-m-line-height: 16px;
+  --font-sm-m-font-weight: 500;
+
+  /* xs */
+  --font-xs-sb: 12px;
+  --font-xs-sb-line-height: 14px;
+  --font-xs-sb-font-weight: 600;
+
+  --font-xs-m: 12px;
+  --font-xs-m-line-height: 14px;
+  --font-xs-m-font-weight: 500;
+
+  --font-xs-r: 12px;
+  --font-xs-r-line-height: 14px;
+  --font-xs-r-font-weight: 400;
 }
 
 @media (prefers-color-scheme: dark) {
