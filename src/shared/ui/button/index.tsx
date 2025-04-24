@@ -43,7 +43,9 @@ const Button = ({
         isOutlinedSmall && 'bg-transparent',
         disabled
           ? variant === 'outlined'
-            ? 'text-interaction-inactive border border-interaction-inactive disabled:cursor-not-allowed disabled:pointer-events-none'
+            ? isOutlinedLarge
+              ? 'bg-white text-interaction-inactive border border-interaction-inactive disabled:cursor-not-allowed disabled:pointer-events-none'
+              : 'bg-transparent text-interaction-inactive border border-interaction-inactive disabled:cursor-not-allowed disabled:pointer-events-none'
             : 'bg-interaction-inactive text-white border-interaction-inactive disabled:cursor-not-allowed disabled:pointer-events-none'
           : variantStyles[variant],
         className
