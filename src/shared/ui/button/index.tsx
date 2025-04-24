@@ -13,13 +13,13 @@ const variantStyles: Record<ButtonVariant, string> = {
   solid:
     'bg-brand-primary text-white hover:bg-interaction-hover active:bg-interaction-pressed',
   outlined:
-    'bg-white text-brand-primary border border-brand-primary hover:text-interaction-hover active:text-interaction-pressed',
+    'text-brand-primary border border-brand-primary hover:text-interaction-hover hover:border-interaction-hover active:text-interaction-pressed active:border-interaction-pressed',
   danger: 'bg-danger text-white',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  small: 'py-[13px] text-lg-sb',
-  large: 'py-[14.5px] text-md-sb',
+  small: 'py-[7px] px-[12.5px] text-lg-sb',
+  large: 'py-[14.5px] text-md-sb w-full',
 };
 
 const Button = ({
@@ -30,27 +30,29 @@ const Button = ({
   disabled,
   ...rest
 }: ButtonProps) => {
-  const base = 'w-full rounded-[12px] cursor-pointer';
+  const base = 'rounded-[12px] cursor-pointer';
+  const isOutlinedLarge = variant === 'outlined' && size === 'large';
+  const isOutlinedSmall = variant === 'outlined' && size === 'small';
 
   return (
-    <>
-      <button
-        className={classNames(
-          base,
-          sizeStyles[size],
-          disabled
-            ? variant === 'outlined'
-              ? 'bg-white text-interaction-inactive border-interaction-inactive disabled:cursor-not-allowed disabled:pointer-events-none'
-              : 'bg-interaction-inactive text-white border-interaction-inactive disabled:cursor-not-allowed disabled:pointer-events-none'
-            : variantStyles[variant],
-          className
-        )}
-        disabled={disabled}
-        {...rest}
-      >
-        {children}
-      </button>
-    </>
+    <button
+      className={classNames(
+        base,
+        sizeStyles[size],
+        isOutlinedLarge && 'bg-white',
+        isOutlinedSmall && 'bg-transparent',
+        disabled
+          ? variant === 'outlined'
+            ? 'text-interaction-inactive border border-interaction-inactive disabled:cursor-not-allowed disabled:pointer-events-none'
+            : 'bg-interaction-inactive text-white border-interaction-inactive disabled:cursor-not-allowed disabled:pointer-events-none'
+          : variantStyles[variant],
+        className
+      )}
+      disabled={disabled}
+      {...rest}
+    >
+      {children}
+    </button>
   );
 };
 
