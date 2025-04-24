@@ -12,7 +12,7 @@ import preview1 from '@/widgets/landing/assets/preview-1.svg';
 import preview2 from '@/widgets/landing/assets/preview-2.svg';
 import preview3 from '@/widgets/landing/assets/preview-3.svg';
 import Image from 'next/image';
-
+import Button from '@/shared/ui/button';
 const HeroSection = () => {
   return (
     <>
@@ -58,9 +58,12 @@ const HeroSection = () => {
               className="w-full hidden lg:block"
             />
             <div className="absolute bottom-[48px] md:bottom-[120px] left-0 right-0 px-5 max-w-[375px] mx-auto">
-              <button className="text-lg-sb text-white bg-brand-primary py-[13px] rounded-[32px] w-full">
+              {/* <button className="text-lg-sb text-white bg-brand-primary py-[13px] rounded-[32px] w-full">
                 지금 시작하기
-              </button>
+              </button> */}
+              <Button variant="danger" size="large">
+                지금 시작하기
+              </Button>
             </div>
           </div>
         </div>
