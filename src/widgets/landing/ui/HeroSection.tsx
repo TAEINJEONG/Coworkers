@@ -2,6 +2,8 @@ import landingMain from '@/widgets/landing/assets/landing-main-large.svg';
 import landingMainMedium from '@/widgets/landing/assets/landing-main-medium.svg';
 import landingMainSmall from '@/widgets/landing/assets/landing-main-small.svg';
 import landingBottomSmall from '@/widgets/landing/assets/landing-bottom-small.svg';
+import landingBottomMedium from '@/widgets/landing/assets/landing-bottom-medium.svg';
+import landingBottomLarge from '@/widgets/landing/assets/landing-bottom-large.svg';
 import folder from '@/widgets/landing/assets/folder-icon.svg';
 import message from '@/widgets/landing/assets/message-icon.svg';
 import done from '@/widgets/landing/assets/done-icon.svg';
@@ -34,7 +36,7 @@ const HeroSection = () => {
             </p>
           </div>
 
-          <div>
+          <div className="relative">
             <Image
               src={landingMainSmall}
               alt="landing-main"
@@ -55,21 +57,21 @@ const HeroSection = () => {
               priority
               className="w-full hidden lg:block"
             />
+            <div className="absolute bottom-[48px] md:bottom-[120px] left-0 right-0 px-5 max-w-[375px] mx-auto">
+              <button className="text-lg-sb text-white bg-brand-primary py-[13px] rounded-[32px] w-full">
+                지금 시작하기
+              </button>
+            </div>
           </div>
         </div>
 
-        <main className="px-4">
-          <div className="flex justify-center items-center mb-12">
-            <button className="text-lg-sb text-white bg-brand-primary py-[13px] rounded-[32px] w-full">
-              지금 시작하기
-            </button>
-          </div>
+        <main className="px-4 max-w-[996px] mx-auto">
           <div className="relative p-[1px] mb-12">
-            <div className="absolute inset-0 bg-gradient-to-r from-interaction-focus to-brand-tertiary rounded-[40px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-interaction-focus to-brand-tertiary rounded-[40px] shadow-[0px_0px_12px_2px_rgba(255,255,255,0.25)] backdrop-blur-[12px]"></div>
             <div className="flex flex-col items-center relative bg-background-primary rounded-[40px] px-[54px] pt-12 md:pt-[85px]">
-              <div className="md:flex md:flex-row-reverse items-center gap-[100px]">
+              <div className="md:flex md:flex-row-reverse items-center md:gap-[100px] lg:gap-[193px]">
                 <div className="mb-10">
-                  <div className="bg-background-secondary rounded-lg p-3 mb-4 w-fit border border-[#F8FAFC1A] shadow-[0px_0px_12px_2px_rgba(0,0,0,0.25)]">
+                  <div className="bg-background-secondary rounded-lg p-3 mb-4 w-fit border border-[#F8FAFC1A] shadow-[0px_0px_12px_2px_rgba(255,255,255,0.25)] backdrop-blur-[12px]">
                     <Image
                       src={folder}
                       alt="folder-icon"
@@ -92,7 +94,7 @@ const HeroSection = () => {
           </div>
 
           <div className="flex flex-col items-center mb-12 bg-background-secondary border border-[#F8FAFC1A] rounded-[40px] pb-[52px] px-[54px]">
-            <div className="md:flex md:flex-row-reverse items-center gap-[90px]">
+            <div className="md:flex md:flex-row-reverse items-center md:gap-[90px] lg:gap-[193px]">
               <div className="mb-10">
                 <Image src={preview2} alt="preview-2" />
               </div>
@@ -115,12 +117,12 @@ const HeroSection = () => {
           </div>
 
           <div className="flex flex-col items-center bg-[#020617] rounded-[40px] pb-[51px] px-[60px]">
-            <div className="md:flex md:flex-row items-center gap-[90px]">
+            <div className="md:flex md:flex-row items-center md:gap-[90px] lg:gap-[193px]">
               <div className="mb-10">
                 <Image src={preview3} alt="priview3" />
               </div>
               <div>
-                <div className="bg-background-secondary rounded-lg p-3 mb-4 w-fit border border-[#F8FAFC1A] shadow-[0px_0px_12px_2px_rgba(0,0,0,0.25)]">
+                <div className="bg-background-secondary rounded-lg p-3 mb-4 w-fit border border-[#F8FAFC1A] shadow-[0px_0px_12px_2px_rgba(255,255,255,0.25)] backdrop-blur-[12px]">
                   <Image src={done} alt="done-icon" width={24} height={24} />
                 </div>
                 <div>
@@ -147,7 +149,17 @@ const HeroSection = () => {
           <Image
             src={landingBottomSmall}
             alt="landing-bottom-small"
-            className="w-full"
+            className="block md:hidden"
+          />
+          <Image
+            src={landingBottomMedium}
+            alt="landing-bottom-medium"
+            className="w-full hidden md:block lg:hidden"
+          />
+          <Image
+            src={landingBottomLarge}
+            alt="landing-bottom-large"
+            className="w-full hidden lg:block"
           />
         </div>
       </div>
