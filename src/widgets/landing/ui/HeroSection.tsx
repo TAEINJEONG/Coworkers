@@ -13,16 +13,19 @@ import preview2 from '@/widgets/landing/assets/preview-2.svg';
 import preview3 from '@/widgets/landing/assets/preview-3.svg';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
 
 const HeroSection = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="bg-background-primary relative">
         <div>
           <div className="absolute top-[55px] left-[50%] -translate-x-[50%]">
             <div className="flex items-center justify-center gap-1">
-              <p className="text-2xl-sb text-text-primary text-nowrap">
-                함께 만들어가는 투두 리스트
+              <p className="text-2xl-sb text-text-primary text-nowrap dark:text-black">
+                {t('app_title')}
               </p>
               <Image
                 src={repair}
