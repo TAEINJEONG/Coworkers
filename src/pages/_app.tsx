@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import i18n from '@/shared/config/i18n';
 import { useSettingsStore } from '../shared/store/useSettingStore';
-import { Header } from '@/shared/ui/Header.tsx';
+import Header from '@/shared/ui/Header.tsx';
 
 export default function App({ Component, pageProps }: AppProps) {
   // primitive 각각 구독
@@ -21,7 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Header />
+      <div className="mb-15">
+        <Header />
+      </div>
       <Component {...pageProps} />
     </>
   );
