@@ -1,10 +1,12 @@
 import { useState } from 'react';
 // import { useRouter } from 'next/router';
 import { useAuthStore } from '@/features/auth/model/useAuthStore';
+import Input from '@/shared/ui/Input';
 
 export default function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const login = useAuthStore((s) => s.login);
   // const router = useRouter();
 
@@ -18,22 +20,39 @@ export default function LoginForm() {
     }
   };
 
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    if (!value) {
+      setErrorMessage('값을 입력해주세요.');
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      setErrorMessage('올바른 이메일 형식이 아닙니다.');
+    } else {
+      setErrorMessage('');
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-20">
-      <input
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto mt-20 max-w-[280px] w-full"
+    >
+      <Input
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        className="w-full p-2 border rounded mb-4"
+        placeholder="이메일을 입력하세요."
+        onBlur={handleBlur}
+        errorMessage={errorMessage}
       />
-      <input
+
+      <Input
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        className="w-full p-2 border rounded mb-4"
+        placeholder="비밀번호를 입력해주세요."
       />
+
       <button
         type="submit"
         className="w-full p-2 bg-blue-600 text-white rounded"
