@@ -10,6 +10,7 @@ import nookies from 'nookies';
 import { verify } from 'jsonwebtoken';
 import { useAuthStore } from '@/features/auth/model/useAuthStore';
 import type { User } from '@/features/auth/types/user';
+import ModalRoot from '@/app/providers/modal/ModalRoot';
 
 // initialUser를 받아오는 커스텀 AppProps
 interface MyAppProps extends AppProps {
@@ -57,6 +58,7 @@ export default function MyApp({
         <Header />
       </div>
       <Component {...pageProps} />
+      <ModalRoot />
     </>
   );
 }
