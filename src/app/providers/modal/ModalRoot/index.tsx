@@ -1,4 +1,4 @@
-import { useModalStore } from '@/shared/store/useModalStore';
+import { useModalStore } from '@/shared/model/modal/useModalStore';
 import Modal from '../../../../shared/ui/Modal';
 
 const ModalRoot = () => {
