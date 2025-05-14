@@ -39,7 +39,7 @@ export default async function handler(
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax' as const,
       path: '/',
-      maxAge: 5 * 60, // 5분
+      maxAge: 60 * 60, // 5분
     };
     // refreshToken: 30일
     const refreshOptions = {
