@@ -1,29 +1,55 @@
 import axios from 'axios';
+import { getToken, setAccessTokenCookie } from '../lib/cookie/token';
 
 const axiosInstance = axios.create({
-  baseURL: '/api',
-  withCredentials: true,
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: 10000,
   headers: { 'Content-Type': 'application/json' },
 });
 
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const accessToken = getToken('accessToken');
+
+    if (accessToken && config.headers) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 axiosInstance.interceptors.response.use(
-  (res) => res,
-  async (err) => {
-    const original = err.config;
-    if (err.response?.status === 401 && !original._retry) {
-      original._retry = true;
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
       try {
-        // pages/api/auth/refresh.ts 경로에 맞춰 '/auth/refresh'
-        await axiosInstance.post('/auth/refresh');
-        return axiosInstance(original);
-      } catch (refreshErr) {
-        console.error('[axios] refresh failed:', refreshErr);
-        window.location.href = '/login';
-        return Promise.reject(refreshErr);
+        const refreshToken = getToken('refreshToken');
+
+        if (refreshToken) {
+          const { data } = await axiosInstance.post('/auth/refresh-token', {
+            refreshToken,
+          });
+          const newAccessToken = data.accessToken;
+          setAccessTokenCookie(newAccessToken);
+
+          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          return axiosInstance(originalRequest);
+        }
+      } catch (refreshError) {
+        //refresh 토큰 만료시 에러
+        console.error('토큰 갱신 실패:', refreshError);
+        return Promise.reject(refreshError);
       }
     }
-    return Promise.reject(err);
+    return Promise.reject(error);
   }
 );
 
