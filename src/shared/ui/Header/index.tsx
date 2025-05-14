@@ -1,5 +1,3 @@
-'use client';
-
 import { LanguageSwitcher } from '@/shared/ui/LanguageSwitcher';
 import { ThemeSwitcher } from '@/shared/ui/ThemeSwitcher';
 import { Transition } from '@headlessui/react';
@@ -16,6 +14,7 @@ import TeamDropDown from './TeamDropDown';
 import UserDropDown from './UserDropDown';
 import { useEffect, useRef, useState } from 'react';
 import MobileTeamMenu from './MobileTeamMenu';
+import { useAuthStore } from '@/features/auth/model/useAuthStore';
 
 const Header = () => {
   // const { t } = useTranslation();
@@ -24,6 +23,11 @@ const Header = () => {
   const [isMobileTeamMenuOpen, setIsMobileTeamMenuOpen] = useState(false);
   const teamDropDownRef = useRef<HTMLDivElement>(null);
   const userDropDownRef = useRef<HTMLDivElement>(null);
+  const user = useAuthStore((state) => state.user);
+
+  useEffect(() => {
+    console.log('AuthStore state:', user);
+  }, [user]);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
@@ -132,7 +136,9 @@ const Header = () => {
               height={24}
               className="md:w-4 md:h-4"
             />
-            <p className="hidden md:block">사용자</p>
+            <p className="hidden md:block">
+              {user ? user?.nickname : '사용자'}
+            </p>
             <Transition
               as="div"
               show={isUserDropDownOpen}

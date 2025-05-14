@@ -21,53 +21,45 @@ const HeroSection = () => {
   return (
     <>
       <div className="bg-background-primary relative">
-        <div>
-          <div className="absolute top-[55px] left-[50%] -translate-x-[50%]">
-            <div className="flex items-center justify-center gap-1">
-              <p className="text-2xl-sb text-text-primary text-nowrap dark:text-black">
-                {t('app_title')}
-              </p>
-              <Image
-                src={repair}
-                alt="repair"
-                priority
-                width={28}
-                height={28}
-              />
-            </div>
-            <p className="flex items-center justify-center text-3xl-sb bg-linear-to-r from-interaction-focus to-brand-tertiary bg-clip-text text-transparent">
-              Coworkers
+        <div className="absolute top-[55px] left-[50%] -translate-x-[50%]">
+          <div className="flex items-center justify-center gap-1">
+            <p className="text-2xl-sb text-text-primary text-nowrap dark:text-black">
+              {t('app_title')}
             </p>
+            <Image src={repair} alt="repair" priority width={28} height={28} />
           </div>
+          <p className="flex items-center justify-center text-3xl-sb bg-linear-to-r from-interaction-focus to-brand-tertiary bg-clip-text text-transparent">
+            Coworkers
+          </p>
+        </div>
 
-          <div className="relative">
-            <Image
-              src={landingMainSmall}
-              alt="landing-main"
-              priority
-              className="w-full object-contain block md:hidden"
-              width={375}
-              height={640}
-            />
-            <Image
-              src={landingMainMedium}
-              alt="landing-main"
-              priority
-              className="w-full hidden md:block lg:hidden"
-            />
-            <Image
-              src={landingMain}
-              alt="landing-main"
-              priority
-              className="w-full hidden lg:block"
-            />
-            <div className="absolute bottom-[48px] md:bottom-[120px] left-0 right-0 px-5 max-w-[375px] mx-auto">
-              <Link href="/login" passHref>
-                <button className="text-lg-sb text-white bg-gradient-to-r from-interaction-focus to-brand-tertiary py-[13px] rounded-[32px] w-full cursor-pointer">
-                  지금 시작하기
-                </button>
-              </Link>
-            </div>
+        <div className="relative">
+          <Image
+            src={landingMainSmall}
+            alt="landing-main"
+            priority
+            className="w-full object-contain block md:hidden"
+            width={375}
+            height={640}
+          />
+          <Image
+            src={landingMainMedium}
+            alt="landing-main"
+            priority
+            className="w-full hidden md:block lg:hidden"
+          />
+          <Image
+            src={landingMain}
+            alt="landing-main"
+            priority
+            className="w-full hidden lg:block"
+          />
+          <div className="absolute bottom-[48px] md:bottom-[120px] left-0 right-0 px-5 max-w-[375px] mx-auto">
+            <Link href="/login" passHref>
+              <button className="text-lg-sb text-white bg-gradient-to-r from-interaction-focus to-brand-tertiary py-[13px] rounded-[32px] w-full cursor-pointer">
+                지금 시작하기
+              </button>
+            </Link>
           </div>
         </div>
 
