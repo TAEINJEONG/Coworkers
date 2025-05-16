@@ -1,4 +1,4 @@
-const path = 'path';
+import path from 'path';
 
 // .env.local의 NEXT_PUBLIC_BASE_PATH를 읽어옵니다.
 const basePath =
@@ -20,4 +20,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
