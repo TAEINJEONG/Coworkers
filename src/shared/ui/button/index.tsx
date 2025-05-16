@@ -7,6 +7,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  disabled: boolean;
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
