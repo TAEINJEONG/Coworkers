@@ -8,11 +8,11 @@ export default function LoginPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // if (user) router.replace('/');
+    if (user) router.replace('/');
   }, [user, router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="h-full max-w-[460px] mx-auto flex items-start md:items-center justify-center">
       <LoginForm />
     </div>
   );
