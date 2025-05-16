@@ -27,7 +27,8 @@
     "**/*.tsx",
     "next-env.d.ts",
     ".next/types/**/*.ts",
-    "src/shared/ui/LanguageSwitcher"
+    "src/shared/ui/LanguageSwitcher",
+    "src/shared/ui/Header.tsx"
   ],
   "exclude": ["node_modules"]
 }
