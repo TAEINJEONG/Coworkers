@@ -27,9 +27,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {/* <div className="mb-15"> */}
       <Header />
-      {/* </div> */}
       <main className="bg-background-primary py-6 px-4 h-screen">
         <Component {...pageProps} />
       </main>
