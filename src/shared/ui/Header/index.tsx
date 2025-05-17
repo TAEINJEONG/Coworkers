@@ -26,10 +26,6 @@ const Header = () => {
   const user = useAuthStore((state) => state.user);
 
   useEffect(() => {
-    console.log('AuthStore state:', user);
-  }, [user]);
-
-  useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (
         teamDropDownRef.current &&
