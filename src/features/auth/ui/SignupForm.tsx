@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-// import { useAuthStore } from '@/features/auth/model/useAuthStore';
+import { useAuthStore } from '@/features/auth/model/useAuthStore';
 import Input from '@/shared/ui/Input';
 import Button from '@/shared/ui/button';
-// import Link from 'next/link';
 
 export default function SignupForm() {
+  const signUp = useAuthStore((s) => s.signUp);
+  const errorMessage = useAuthStore((s) => s.errorDetails);
+
   const [nickname, setNickName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -18,16 +20,24 @@ export default function SignupForm() {
     passwordConfirmationErrorMessage,
     setPasswordConfirmationErrorMessage,
   ] = useState<string>('');
-  // const login = useAuthStore((s) => s.login);
   const router = useRouter();
+
+  useEffect(() => {
+    if (errorMessage?.message === '이미 사용중인 이메일입니다.') {
+      setEmailErrorMessage(errorMessage?.message);
+    } else {
+      setEmailErrorMessage('');
+    }
+  }, [errorMessage]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // await login(email, password);
+      await signUp(email, nickname, password, passwordConfirmation);
       router.push('/');
     } catch {
-      alert('로그인에 실패했습니다. 이메일 또는 비밀번호를 확인해주세요.');
+      const latestDetails = useAuthStore.getState().errorDetails;
+      console.log(latestDetails);
     }
   };
 
@@ -36,6 +46,8 @@ export default function SignupForm() {
 
     if (!value) {
       setNickNameErrorMessage('이름을 입력해주세요.');
+    } else if (value.length > 20) {
+      setNickNameErrorMessage('이름은 최대 20자까지 가능합니다.');
     } else {
       setNickNameErrorMessage('');
     }
@@ -58,6 +70,16 @@ export default function SignupForm() {
 
     if (!value) {
       setPasswordErrorMessage('비밀번호를 입력해 주세요.');
+    } else if (value.length < 8) {
+      setPasswordErrorMessage('8자 이상 입력해주세요.');
+    } else if (!/^[A-Za-z0-9!@#$%^&*]+$/.test(value)) {
+      setPasswordErrorMessage(
+        '비밀번호는 숫자, 영문, 특수문자로만 가능합니다.'
+      );
+    } else if (!/[!@#$%^&*]/.test(value)) {
+      setPasswordErrorMessage(
+        '비밀번호에 특수문자(!@#$%^&*)를 최소 하나 포함해야 합니다.'
+      );
     } else {
       setPasswordErrorMessage('');
     }
@@ -70,6 +92,16 @@ export default function SignupForm() {
 
     if (!value) {
       setPasswordConfirmationErrorMessage('비밀번호 확인을 해주세요.');
+    } else if (value.length < 8) {
+      setPasswordConfirmationErrorMessage('8자 이상 입력해주세요.');
+    } else if (!/^[A-Za-z0-9!@#$%^&*]+$/.test(value)) {
+      setPasswordErrorMessage(
+        '비밀번호는 숫자, 영문, 특수문자로만 가능합니다.'
+      );
+    } else if (!/[!@#$%^&*]/.test(value)) {
+      setPasswordErrorMessage(
+        '비밀번호에 특수문자(!@#$%^&*)를 최소 하나 포함해야 합니다.'
+      );
     } else if (password !== passwordConfirmation) {
       setPasswordConfirmationErrorMessage('비밀번호가 일치하지 않습니다.');
     } else {
@@ -157,7 +189,7 @@ export default function SignupForm() {
           </label>
           <Input
             type="password"
-            id="passwordConfirmation"
+            id="passwordConfirmationInput"
             value={passwordConfirmation}
             onChange={(e) => setPasswordConfirmation(e.target.value)}
             placeholder="비밀번호를 다시 한 번 확인해주세요."

@@ -20,14 +20,17 @@ export default async function handler(
   // 2) preflight 요청에 대한 응답
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
+  } else if (req.method !== 'POST') {
+    res.setHeader('Allow', ['POST', 'OPTIONS']);
+    return res.status(405).end('Method Not Allowed');
   }
 
   // 3) 실제 로그인 로직
   try {
-    const { email, password } = req.body;
+    const { email, nickname, password, passwordConfirmation } = req.body;
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/signIn`,
-      { email, password }
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/signUp`,
+      { email, nickname, password, passwordConfirmation }
     );
 
     const data = response.data;
@@ -53,11 +56,15 @@ export default async function handler(
       serialize('accessToken', data.accessToken, accessOptions),
       serialize('refreshToken', data.refreshToken, refreshOptions),
     ]);
-    return res.status(200).json({ success: true, user: data.user });
+    return res.status(201).json({ success: true, user: data.user });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
     const status = err.response?.status || 500;
-    const message = err.response?.data?.message || 'Login error';
-    return res.status(status).json({ success: false, message });
+    const payload = err.response?.data || {};
+
+    return res.status(status).json({
+      message: payload.message || 'Signup failed',
+      details: payload.details ?? null,
+    });
   }
 }
